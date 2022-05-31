@@ -11,14 +11,14 @@ var specialChars = Boolean;
 var numericNums = Boolean;
 var lowerChars = Boolean;
 var upperChars = Boolean;
-
-for (let i = 33; i < 48; i++) {
+console.log(specialChar);
+for (let i = 32; i < 48; i++) {
   specialChar.push(String.fromCharCode(i));
 }
 for (let i = 58; i < 65; i++) {
   specialChar.push(String.fromCharCode(i));
 }
-for (let i = 91; i < 96; i++) {
+for (let i = 91; i < 97; i++) {
   specialChar.push(String.fromCharCode(i));
 }
 for (let i = 123; i < 127; i++) {
@@ -37,7 +37,7 @@ for (let i = 65; i < 91; i++) {
   upperChar.push(String.fromCharCode(i));
 }
 function start() {
-  var numChars = prompt(
+  numChars = prompt(
     "How many characters would you like in your password? (Please enter number between 8-128)",
     "8"
   );
@@ -74,25 +74,17 @@ function charSelections() {
 }
 
 function passwordGenerate() {
-  for (let i = 0; i <= numChars; i++) {
-    passwordArray = Math.floor(Math.random() * possibleChars.length);
-    passwordText = password.push(possibleChars[passwordArray]);
-    console.log(possibleChars);
-    console.log(password);
-    console.log(passwordArray);
-    console.log(possibleChars[Math.random() * length]);
-    console.log(possibleChars[passwordArray]);
+  for (let i = 0; i <= numChars - 1; i++) {
+    passwordArray[i] =
+      possibleChars[Math.floor(Math.random() * possibleChars.length)];
   }
 }
-
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = passwordArray.join("");
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
 }
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
