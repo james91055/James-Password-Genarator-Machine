@@ -11,12 +11,6 @@ var specialChars = Boolean;
 var numericNums = Boolean;
 var lowerChars = Boolean;
 var upperChars = Boolean;
-var possibleCharsA = possibleCharsA.concat(
-  possibleChars[0],
-  possibleChars[1],
-  possibleChars[2],
-  possibleChars[3]
-);
 
 for (let i = 33; i < 48; i++) {
   specialChar.push(String.fromCharCode(i));
@@ -64,27 +58,31 @@ function charSelections() {
     return charSelections();
   } else {
     if (specialChars) {
-      possibleChars.push(specialChar);
+      possibleChars.push(...specialChar);
     }
     if (numericNums) {
-      possibleChars.push(numericNum);
+      possibleChars.push(...numericNum);
     }
     if (lowerChars) {
-      possibleChars.push(lowerChar);
+      possibleChars.push(...lowerChar);
     }
     if (upperChars) {
-      possibleChars.push(upperChar);
-      console.log(possibleChars);
+      possibleChars.push(...upperChar);
     }
   }
   passwordGenerate();
 }
 
 function passwordGenerate() {
-  for (let i = 0; i < numChars; i++) {
-    passwordArray[i] = Math.floor(Math.random() * possibleChars);
+  for (let i = 0; i <= numChars; i++) {
+    passwordArray = Math.floor(Math.random() * possibleChars.length);
+    passwordText = password.push(possibleChars[passwordArray]);
+    console.log(possibleChars);
+    console.log(password);
+    console.log(passwordArray);
+    console.log(possibleChars[Math.random() * length]);
+    console.log(possibleChars[passwordArray]);
   }
-  console.log(possibleCharsA);
 }
 
 // Write password to the #password input
@@ -94,6 +92,7 @@ function writePassword() {
 
   passwordText.value = password;
 }
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
